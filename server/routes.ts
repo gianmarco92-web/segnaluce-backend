@@ -7,22 +7,6 @@ import express from "express";
 import path from "path";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Serve static assets
-  app.use('/attached_assets', express.static(path.join(process.cwd(), 'attached_assets')));
-  
-  // SEO Routes - serve robots.txt and sitemap.xml
-  app.get('/robots.txt', (req, res) => {
-    res.sendFile(path.join(process.cwd(), 'client/public/robots.txt'));
-  });
-  
-  app.get('/sitemap.xml', (req, res) => {
-    res.type('application/xml');
-    res.sendFile(path.join(process.cwd(), 'client/public/sitemap.xml'));
-  });
-  
-  app.get('/google-site-verification.html', (req, res) => {
-    res.sendFile(path.join(process.cwd(), 'client/public/google-site-verification.html'));
-  });
 
   // Setup authentication
   await setupSecureAuth(app);
